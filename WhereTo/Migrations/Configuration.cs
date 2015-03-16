@@ -10,7 +10,7 @@ namespace WhereTo.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WhereTo.Models.PlaceContext context)

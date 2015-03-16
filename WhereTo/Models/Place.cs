@@ -17,8 +17,14 @@ namespace WhereTo.Models
 
     }
 
+
     public class PlaceContext: DbContext
     {
+        public PlaceContext()
+        {
+
+        }
+
         public PlaceContext(string connection="PlaceContext") : base(connection)
         {
 
