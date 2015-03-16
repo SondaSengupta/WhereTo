@@ -22,6 +22,11 @@ namespace WhereTo.Repository
             return _dbContext;
         }
 
+        public IQueryable<Models.Place> GetAllPlaces()
+        {
+            return _dbContext.Places;
+        }
+
         public int GetCount()
         {
             return _dbContext.Places.Count<Place>();

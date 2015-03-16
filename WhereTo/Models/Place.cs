@@ -15,6 +15,20 @@ namespace WhereTo.Models
         public string PlaceComment { get; set; }
         public string Category { get; set; }
 
+        public Place()
+        {
+
+        }
+        
+        public Place(string ApplicationUserID, string PlaceID, bool IsCompleted, string PlaceComment, string Category)
+        {
+            this.ApplicationUserID = ApplicationUserID;
+            this.PlaceID = PlaceID;
+            this.IsCompleted = IsCompleted;
+            this.PlaceComment = PlaceComment;
+            this.Category = Category;
+        }
+
     }
 
 
