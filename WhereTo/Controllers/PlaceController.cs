@@ -9,17 +9,18 @@ using WhereTo.Repository;
 
 namespace WhereTo.Controllers
 {
+    [Authorize]
     public class PlaceController : ApiController
     {
         private static PlaceRepository _db = new PlaceRepository();
 
         // GET: api/PlaceController
-        public IQueryable<Place> GetPlaces()
+        public IQueryable<Place> Get()
         {
             return _db.GetAllPlaces();
         }
 
-        //Post api/PlaceController
+        //POST: api/PlaceController
         public HttpResponseMessage Post(HttpRequestMessage request, Place place)
         {
             if (ModelState.IsValid)
