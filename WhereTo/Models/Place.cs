@@ -39,7 +39,7 @@ namespace WhereTo.Models
 
         }
 
-        public PlaceContext(string connection="PlaceContext") : base(connection)
+        public PlaceContext(string connection="DefaultConnection") : base(connection)
         {
 
         }

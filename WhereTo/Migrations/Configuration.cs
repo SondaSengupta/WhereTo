@@ -26,6 +26,15 @@ namespace WhereTo.Migrations
                 },
 
                  new Place
+                 {
+                     ApplicationUserID = "Jenny Smith",
+                     PlaceID = "The Great Barrier Reef",
+                     IsCompleted = false,
+                     PlaceComment = "beautiful",
+                     Category = "Australian Adventures",
+                 },
+
+                 new Place
                 {
             ApplicationUserID = "John Smith",
             PlaceID = "The Eiffel Tower",
