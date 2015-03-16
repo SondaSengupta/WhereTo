@@ -12,7 +12,7 @@ namespace WhereTo.Repository
     {
         private PlaceContext _dbContext;  //declares db field
 
-        public PlaceRepository(string connection="PlaceContext")
+        public PlaceRepository(string connection="DefaultConnection")
         {
             _dbContext = new PlaceContext(connection); //generates new instance of PlaceContext
             _dbContext.Places.Load();  //Loads the DbSet Places, which connects the database to dbLogic
