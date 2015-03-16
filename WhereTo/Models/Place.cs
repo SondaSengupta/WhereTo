@@ -14,5 +14,19 @@ namespace WhereTo.Models
         public bool IsCompleted { get; set; }
         public string PlaceComment { get; set; }
         public string Category { get; set; }
+
     }
+
+    public class PlaceContext: DbContext
+    {
+        public PlaceContext(string connection="PlaceContext") : base(connection)
+        {
+
+        }
+
+        public DbSet<Place> Places { get; set; }
+
+    }
+
+
 }
