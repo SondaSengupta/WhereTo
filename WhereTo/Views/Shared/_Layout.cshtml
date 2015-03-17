@@ -22,8 +22,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="/#/AddDestination">Add a Destination</a></li>
+                    <li><a href="/#/ViewDestination">View My Destinations</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,6 +40,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-route.js")
     @Scripts.Render("~/Scripts/app/place-controller.js")
     @RenderSection("scripts", required: false)
 </body>

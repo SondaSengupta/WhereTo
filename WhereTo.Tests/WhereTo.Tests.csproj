@@ -96,11 +96,14 @@
   <ItemGroup>
     <Content Include="App.config" />
     <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="scripts\angular-route.min.js.map" />
     <None Include="scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>

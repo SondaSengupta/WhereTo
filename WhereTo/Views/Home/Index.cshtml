@@ -3,14 +3,14 @@
 }
 
 <div ng-app="WhereToApp">
-    {{2 + 2}}
+    <div>
+       This angular computation of 2 + 2 = {{2 + 2}}
 
-
-</div>
-
-
-<div class="jumbotron">
-    <h1>WhereTo</h1>
-    <p class="lead">WhereTo allows you to save your bucket list of destinations using the Google Places API</p>
-    <p><a href="http://google.com" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+    <div ng-view>
+    </div>
+    <div class="jumbotron">
+        <h1>WhereTo</h1>
+        <p class="lead">WhereTo allows you to save your bucket list of destinations using the Google Places API</p>
+    </div>
 </div>
