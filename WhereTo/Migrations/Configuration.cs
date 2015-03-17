@@ -1,4 +1,4 @@
-namespace WhereTo.Migrations
+﻿namespace WhereTo.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -18,11 +18,11 @@ namespace WhereTo.Migrations
             context.Places.AddOrUpdate(i => i.PlaceID,
                 new Place
                 {
-            ApplicationUserID = "Jane Smith",
-            PlaceID = "The Great Wall",
-            IsCompleted = true,
-            PlaceComment = "nice",
-            Category = "Places Nearby",
+                    ApplicationUserID = "Jane Smith",
+                    PlaceID = "The Great Wall",
+                    IsCompleted = true,
+                    PlaceComment = "nice",
+                    Category = "Places Nearby",
                 },
 
                  new Place
@@ -35,13 +35,13 @@ namespace WhereTo.Migrations
                  },
 
                  new Place
-                {
-            ApplicationUserID = "John Smith",
-            PlaceID = "The Eiffel Tower",
-            IsCompleted = true,
-            PlaceComment = "awful",
-            Category = "Places in France",
-                }
+                 {
+                     ApplicationUserID = "John Smith",
+                     PlaceID = "The Eiffel Tower",
+                     IsCompleted = true,
+                     PlaceComment = "awful",
+                     Category = "Places in France",
+                 }
              );
         }
     }

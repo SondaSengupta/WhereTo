@@ -34,16 +34,6 @@ namespace WhereTo.Models
 
     public class PlaceContext: DbContext
     {
-        public PlaceContext()
-        {
-
-        }
-
-        public PlaceContext(string connection="DefaultConnection") : base(connection)
-        {
-
-        }
-
         public DbSet<Place> Places { get; set; }
 
     }

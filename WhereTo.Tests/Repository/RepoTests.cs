@@ -13,7 +13,7 @@ namespace WhereTo.Tests.Repository
         [ClassInitialize]
         public static void SetUp(TestContext _context)
         {
-            repo = new PlaceRepository("Name=PlaceTest");
+            repo = new PlaceRepository();
             repo.Clear();
         }
 
@@ -30,6 +30,14 @@ namespace WhereTo.Tests.Repository
             Assert.AreEqual(0, repo.GetCount());
             repo.Add(new Place());
             Assert.AreEqual(1, repo.GetCount());
+        }
+
+        [TestMethod]
+        public void DatabaseGetAllPlaces()
+        {
+            Assert.AreEqual(0, repo.GetCount());
+            repo.Add(new Place());
+            Assert.AreEqual(1, repo.GetAllPlaces());
         }
     }
 }

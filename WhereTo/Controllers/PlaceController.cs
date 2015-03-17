@@ -7,20 +7,22 @@ using System.Web.Http;
 using WhereTo.Models;
 using WhereTo.Repository;
 
+
 namespace WhereTo.Controllers
 {
-    [Authorize]
     public class PlaceController : ApiController
     {
         private static PlaceRepository _db = new PlaceRepository();
 
-        // GET: api/PlaceController
-        public IQueryable<Place> Get()
+        // GET: /api/place
+        [Route("api/place")]
+        public IEnumerable<Place> Get()
         {
-            return _db.GetAllPlaces();
+            IEnumerable<Place> Location = _db.GetAllPlaces();
+            return Location;
         }
 
-        //POST: api/PlaceController
+        //POST: /api/place
         public HttpResponseMessage Post(HttpRequestMessage request, Place place)
         {
             if (ModelState.IsValid)
@@ -34,16 +36,6 @@ namespace WhereTo.Controllers
         private object GetErrorMessages()
         {
             return ModelState.Values.SelectMany(x => x.Errors.Select(e => e.ErrorMessage));
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-
-            base.Dispose(disposing);
         }
     }
 }

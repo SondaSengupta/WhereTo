@@ -12,9 +12,9 @@ namespace WhereTo.Repository
     {
         private PlaceContext _dbContext;  //declares db field
 
-        public PlaceRepository(string connection="DefaultConnection")
+        public PlaceRepository()
         {
-            _dbContext = new PlaceContext(connection); //generates new instance of PlaceContext
+            _dbContext = new PlaceContext(); //generates new instance of PlaceContext
             _dbContext.Places.Load();  //Loads the DbSet Places, which connects the database to dbLogic
         }
         public PlaceContext Context()
@@ -42,7 +42,7 @@ namespace WhereTo.Repository
         {
             _dbContext.Places.Remove(F);
             _dbContext.SaveChanges();
-               
+
         }
 
         public void Clear()

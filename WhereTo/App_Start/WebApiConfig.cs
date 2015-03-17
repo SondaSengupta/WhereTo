@@ -11,6 +11,10 @@ namespace WhereTo
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var jsonFormatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -21,8 +25,7 @@ namespace WhereTo
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var jsonFormatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            
         }
     }
 }
