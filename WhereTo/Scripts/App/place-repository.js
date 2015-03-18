@@ -3,6 +3,10 @@
     return {
         get: function () {
             return $resource('/api/place').query();
+        },
+    
+        save: function (place) {
+            return $resource('/api/place').save(place);
         }
     }
 });

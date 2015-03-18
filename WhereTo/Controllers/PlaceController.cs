@@ -23,18 +23,11 @@ namespace WhereTo.Controllers
 
         //POST: /api/place
         [Route("api/place/")]
-        public HttpResponseMessage Post([FromBody] string name)
+        public HttpResponseMessage Post(Place place)
         {
-            string person = name;
-           
-               // _db.Add(new Place(ApplicationUserID, PlaceID, IsCompleted, PlaceComment, Category));
+               _db.Add(place);
                return new HttpResponseMessage(HttpStatusCode.OK);
           
-        }
-
-        private object GetErrorMessages()
-        {
-            return ModelState.Values.SelectMany(x => x.Errors.Select(e => e.ErrorMessage));
         }
     }
 }
