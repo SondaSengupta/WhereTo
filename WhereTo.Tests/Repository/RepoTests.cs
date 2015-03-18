@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WhereTo.Repository;
 using WhereTo.Models;
+using System.Collections.Generic;
 
 namespace WhereTo.Tests.Repository
 {
@@ -33,11 +34,13 @@ namespace WhereTo.Tests.Repository
         }
 
         [TestMethod]
-        public void DatabaseGetAllPlaces()
+        public void DatabaseGetPlacesbyUserId()
         {
-            Assert.AreEqual(0, repo.GetCount());
-            repo.Add(new Place());
-            Assert.AreEqual(1, repo.GetAllPlaces());
+            Place testplace = new Place("bcfac595-1a3f-44e9-b4cc-105de3c581bb", "Jersey", true, "rough", "America");
+            repo.Add(testplace);
+            List<Place> place = repo.GetPlacesbyUserId("bcfac595-1a3f-44e9-b4cc-105de3c581bb") as List<Place>;
+            Assert.AreEqual(1, place.Count);
+
         }
     }
 }

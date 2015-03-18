@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WhereTo.Models;
 using WhereTo.Repository;
+using Microsoft.AspNet.Identity;
 
 
 namespace WhereTo.Controllers
@@ -18,6 +19,11 @@ namespace WhereTo.Controllers
         [Route("api/place")]
         public IEnumerable<Place> Get()
         {
+            string userId = User.Identity.GetUserId();
+            if (userId != null)
+            {
+                return _db.GetPlacesbyUserId(userId);
+            }
             return _db.GetAllPlaces();
         }
 
@@ -25,8 +31,9 @@ namespace WhereTo.Controllers
         [Route("api/place/")]
         public HttpResponseMessage Post(Place place)
         {
-               _db.Add(place);
-               return new HttpResponseMessage(HttpStatusCode.OK);
+            place.ApplicationUserID = User.Identity.GetUserId();
+            _db.Add(place);
+           return new HttpResponseMessage(HttpStatusCode.OK);
           
         }
     }

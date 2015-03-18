@@ -47,7 +47,7 @@ namespace WhereTo.Repository
 
         public void Clear()
         {
-            var allItemsQuery = from Event in _dbContext.Places select Event;
+            var allItemsQuery = from p in _dbContext.Places select p;
             var a = allItemsQuery.ToList<Place>();
             _dbContext.Places.RemoveRange(a);
             _dbContext.SaveChanges();
@@ -56,6 +56,16 @@ namespace WhereTo.Repository
         public void Dispose()
         {
             _dbContext.Dispose();
+        }
+
+
+
+        public IEnumerable<Place> GetPlacesbyUserId(string userId)
+        {
+            var PlacesbyId = from p in _dbContext.Places
+                             where p.ApplicationUserID == userId
+                             select p;
+            return PlacesbyId.ToList();
         }
     }
 }
