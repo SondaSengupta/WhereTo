@@ -202,6 +202,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\main.js" />
     <Content Include="Scripts\App\place-controller.js" />
+    <Content Include="Scripts\App\place-repository.js" />
     <Content Include="templates\AddDestination.html" />
     <Content Include="templates\ViewDestination.html" />
     <Content Include="Scripts\bootstrap.js" />

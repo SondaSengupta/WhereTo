@@ -1,6 +1,4 @@
-﻿/// <reference path="Views/ViewDestination.html" />
-/// <reference path="Views/AddDestination.html" />
-angular.module('WhereToApp', ['ngRoute'])
+﻿angular.module('WhereToApp', ['ngRoute', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider.when("/ViewDestination", {
             templateUrl: "/templates/ViewDestination.html", controller: "PlaceCtrl"
@@ -9,5 +7,6 @@ angular.module('WhereToApp', ['ngRoute'])
             templateUrl: "/templates/AddDestination.html", controller: "PlaceCtrl"
         });
     })
-.controller('PlaceCtrl', function ($scope, $http) {
+.controller('PlaceCtrl', function ($scope, placeRepository) {
+    $scope.places = placeRepository.get();
 })

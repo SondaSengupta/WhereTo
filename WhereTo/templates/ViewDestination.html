@@ -1,9 +1,20 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
- This views destinations
-</body>
-</html>
+﻿<section>
+    <h1>
+        View the top {{25+25}} of your destinations here!
+    </h1>
+ 
+    <div>
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>Application User</th>
+                <th>Place</th>
+                <th>Comment</th>
+            </tr>
+            <tr ng-repeat="place in places">
+                <td>{{place.applicationUserID}}</td>
+                <td>{{place.placeID}}</td>
+                <td>{{place.placeComment}}</td>
+            </tr>
+        </table>
+    </div>
+</section>
