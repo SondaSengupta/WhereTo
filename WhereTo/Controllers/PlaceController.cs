@@ -18,19 +18,18 @@ namespace WhereTo.Controllers
         [Route("api/place")]
         public IEnumerable<Place> Get()
         {
-            IEnumerable<Place> Location = _db.GetAllPlaces();
-            return Location;
+            return _db.GetAllPlaces();
         }
 
         //POST: /api/place
-        public HttpResponseMessage Post(HttpRequestMessage request, Place place)
+        [Route("api/place/")]
+        public HttpResponseMessage Post([FromBody] string name)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Add(place);
-                return new HttpResponseMessage(HttpStatusCode.OK);
-            }
-            return request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
+            string person = name;
+           
+               // _db.Add(new Place(ApplicationUserID, PlaceID, IsCompleted, PlaceComment, Category));
+               return new HttpResponseMessage(HttpStatusCode.OK);
+          
         }
 
         private object GetErrorMessages()
