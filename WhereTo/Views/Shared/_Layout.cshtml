@@ -36,14 +36,18 @@
             <p>&copy; @DateTime.Now.Year - WhereTo</p>
         </footer>
     </div>
-
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDzuf3PKADN4hVI4ry8q0bVMsgFMPq_ofk'></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/angular.js")
     @Scripts.Render("~/Scripts/angular-route.js")
     @Scripts.Render("~/Scripts/angular-resource.js")
+    @Scripts.Render("~/Scripts/lodash.min.js")
+    
+    @Scripts.Render("~/Scripts/angular-google-maps.min.js")
     @Scripts.Render("~/Scripts/app/place-controller.js")
     @Scripts.Render("~/Scripts/app/place-repository.js")
     @RenderSection("scripts", required: false)
+    
 </body>
 </html>

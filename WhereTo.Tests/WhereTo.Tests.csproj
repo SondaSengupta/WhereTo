@@ -102,6 +102,8 @@
     <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\lodash.js" />
+    <Content Include="scripts\lodash.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
