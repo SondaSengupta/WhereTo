@@ -61,12 +61,20 @@
 
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 'Place ID: ' + place.place_id + '<br>' +
-                place.formatted_address);
+                place.formatted_address + '<br><button class="add-map">Add to Destination</button>');
             infowindow.open(map, marker);
+
+            $(".add-map").click(function () {
+                $("#destination").val(place.place_id).trigger("input");
+                console.log(place.place_id);    
+            })
+
         });
     }
 
     google.maps.event.addDomListener(window, 'load', $scope.mapstart);
+
+    
     
     
 })
