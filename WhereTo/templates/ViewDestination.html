@@ -9,11 +9,13 @@
                 <th>Application User</th>
                 <th>Place</th>
                 <th>Comment</th>
+                <th>Details</th>
             </tr>
-            <tr ng-repeat="place in places">
+            <tr ng-repeat="(placedetail, place) in places">
                 <td>{{place.applicationUserID}}</td>
                 <td>{{place.placeID}}</td>
                 <td>{{place.placeComment}}</td>
+                <td><a class="btn btn-primary" href="/#/{{place.placeID}}/edit">Place Details</a></td>
             </tr>
         </table>
     </div>

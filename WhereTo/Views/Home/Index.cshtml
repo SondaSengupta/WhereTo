@@ -4,11 +4,10 @@
 
 <div ng-app="WhereToApp">
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&signed_in=true"></script>
-
-        <div> This angular computation of 2 + 2 = {{2 + 2}}</div>
-        <div ng-view></div>
+        
         <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
         <div id="map-canvas" ng-controller="PlaceCtrl"></div>
+        <div ng-view></div>
  
 
 </div>

@@ -6,7 +6,24 @@
         $routeProvider.when("/AddDestination", {
             templateUrl: "/templates/AddDestination.html", controller: "PlaceCtrl"
         });
+        $routeProvider.when("/:id/edit", {
+            templateUrl: "/templates/EditDestination.html", controller: "EditCtrl"
+           
+        })
     })
+.controller('EditCtrl', function ($scope, $location, $routeParams, $http) {
+    var vm = this;
+    var id = $routeParams.id;
+    var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyDzuf3PKADN4hVI4ry8q0bVMsgFMPq_ofk";
+    $http.jsonp(url + '&callback=JSON_CALLBACK')
+    .then(function (response) {
+        console.log(response)
+    });
+
+    
+
+})
+
 .controller('PlaceCtrl', function ($scope, placeRepository, $location) {
     $scope.places = placeRepository.get();
 
@@ -73,8 +90,4 @@
     }
 
     google.maps.event.addDomListener(window, 'load', $scope.mapstart);
-
-    
-    
-    
 })

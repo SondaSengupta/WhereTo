@@ -207,6 +207,7 @@
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\lodash.min.js" />
     <Content Include="templates\AddDestination.html" />
+    <Content Include="templates\EditDestination.html" />
     <Content Include="templates\Maps.html" />
     <Content Include="templates\ViewDestination.html" />
     <Content Include="Scripts\bootstrap.js" />

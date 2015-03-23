@@ -1,24 +1,23 @@
 ﻿<div class="row">
     <div class="col-md-10">
-        <h2>Add up to {{30+20}} Destinations!</h2>
+        <h2>Enter a Location above to add your next destination.</h2>
     </div>
 </div>
 <form name="placeForm" role="form" novalidate>
     <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
+        
+            <div class="form-group col-md-4">
                 <label>The Destination</label>
                 <input name="placeID" type="text" class="form-control" id="destination" ng-model="place.placeID" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label>Place Comment</label>
                 <input name="comment" type="text" class="form-control" ng-model="place.placeComment" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label>Category</label>
                 <input name="category" type="text" class="form-control" ng-model="place.category" required>
             </div>
             <button class="btn btn-default" ng-click="save(place)">Create Destination</button>
         </div>
-    </div>
 </form>
