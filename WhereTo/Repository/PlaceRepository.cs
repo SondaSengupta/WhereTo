@@ -75,12 +75,21 @@ namespace WhereTo.Repository
         }
 
 
-        internal void UpdateCompleted(int id)
+        internal void UpdatePlace(Place place)
         {
-            var query = QuerybyPlaceID(id);
+            var getPlace = from p in _dbContext.Places
+                             where p.ID == place.ID
+                             select p;
 
-            var place = query.First<Place>();
-            place.IsCompleted = true;
+            List<Place> placeQuery = getPlace.ToList<Place>();
+            Place item = placeQuery.First();
+
+            item.IsCompleted = place.IsCompleted;
+            item.PlaceAddress = place.PlaceAddress;
+            item.PlaceComment = place.PlaceComment;
+            item.PlaceName = place.PlaceName;
+            item.PlacePic = place.PlacePic;
+     
             _dbContext.SaveChanges();
         }
 

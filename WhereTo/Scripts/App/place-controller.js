@@ -12,27 +12,75 @@
         })
     })
 
-.controller('ViewCtrl', function ($scope, placeRepository) {
+    
+
+    // Got filter from Angular-UI from https://github.com/angular-ui/ui-utils/blob/master/modules/unique/unique.js //
+    .filter('unique', ['$parse', function ($parse) {
+        'use strict';
+
+        return function (items, filterOn) {
+
+            if (filterOn === false) {
+                return items;
+            }
+
+            if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+                var newItems = [],
+                  get = angular.isString(filterOn) ? $parse(filterOn) : function (item) { return item; };
+
+                var extractValueToCompare = function (item) {
+                    return angular.isObject(item) ? get(item) : item;
+                };
+
+                angular.forEach(items, function (item) {
+                    var isDuplicate = false;
+
+                    for (var i = 0; i < newItems.length; i++) {
+                        if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                            isDuplicate = true;
+                            break;
+                        }
+                    }
+                    if (!isDuplicate) {
+                        newItems.push(item);
+                    }
+
+                });
+                items = newItems;
+            }
+            return items;
+        }
+    }])
+
+
+.controller('ViewCtrl', function ($scope, placeRepository, $location) {
     $scope.places = placeRepository.get();
     $scope.Completed = function (place) {
         place.isCompleted = true;
         placeRepository.update(place);
     }
+    $scope.$apply();
+    $location.path("/ViewDestination");
 
    
 })
 
-.controller('EditCtrl', function ($rootScope, $location, $routeParams, placeRepository, $scope, $http) {
-    var vm = this;
+.controller('EditCtrl', function ($location, $routeParams, placeRepository, $scope, $http) {
     var id = $routeParams.id;
     $http.get('/api/place/' + id)
     .success(function (data) {
-        vm.Detail = data[0].placeName;
-        console.log(data[0].placeName);
+        $scope.Detail = data[0];
+        console.log(data);
+        console.log($scope.Detail);
     })
     .error(function (err) {
         console.log(err);
     });
+
+    $scope.updateDetails = function (Detail) {
+        placeRepository.updateDetails(Detail);
+       
+    }
         
 
     //setTimeout(function () {
@@ -55,12 +103,14 @@
 
     $scope.save = function(place) {
         placeRepository.save(place);
-        $location.path("/ViewDestination");
         $scope.$apply();
+        $location.path("/ViewDestination");
+       
         
         
     }
     
+    //Taken from Google Place Finder documentation: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     $scope.mapstart = function initialize() {
         var mapOptions = {
             center: { lat: -33.8688, lng: 151.2195 },

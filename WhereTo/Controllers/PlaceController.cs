@@ -48,9 +48,9 @@ namespace WhereTo.Controllers
 
         [Route("api/{id}/update")]
         [HttpPost]
-        public HttpResponseMessage Update(int id)
+        public HttpResponseMessage Update(Place place)
         {
-            _db.UpdateCompleted(id);
+            _db.UpdatePlace(place);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
