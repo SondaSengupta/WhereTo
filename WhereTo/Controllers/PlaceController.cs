@@ -27,6 +27,15 @@ namespace WhereTo.Controllers
             return _db.GetAllPlaces();
         }
 
+        [Route("api/place/{id}")]
+        public IEnumerable<Place> Get(int id)
+        {
+
+            return _db.GetPlacesbyPlaceId(id);
+        }
+
+
+
         //POST: /api/place
         [Route("api/place/")]
         public HttpResponseMessage Post(Place place)
@@ -35,6 +44,14 @@ namespace WhereTo.Controllers
             _db.Add(place);
            return new HttpResponseMessage(HttpStatusCode.OK);
           
+        }
+
+        [Route("api/{id}/update")]
+        [HttpPost]
+        public HttpResponseMessage Update(int id)
+        {
+            _db.UpdateCompleted(id);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

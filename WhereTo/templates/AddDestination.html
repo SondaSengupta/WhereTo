@@ -6,18 +6,34 @@
 <form name="placeForm" role="form" novalidate>
     <div class="row">
         
+            <div class="form-group col-md-4" ng-hide="true">
+                <label>The PlaceID</label>
+                <input name="placeID" type="text" class="form-control" id="destination" ng-model="place.placeID" required>
+            </div>
             <div class="form-group col-md-4">
                 <label>The Destination</label>
-                <input name="placeID" type="text" class="form-control" id="destination" ng-model="place.placeID" required>
+                <input name="placeName" type="text" class="form-control" id="placeName" ng-model="place.placeName" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label>The Address</label>
+                <input name="placeAddress" type="text" class="form-control" id="placeAddress" ng-model="place.placeAddress" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Add a Picture from a URL</label>
+                <input name="placePic" type="url" class="form-control" id="placePic" ng-model="place.placePic" required>
             </div>
             <div class="form-group col-md-4">
                 <label>Place Comment</label>
                 <input name="comment" type="text" class="form-control" ng-model="place.placeComment" required>
             </div>
             <div class="form-group col-md-4">
+                <label>Have you Visited Here?</label>
+                <input name="isCompleted" type="checkbox" ng-model="place.isCompleted" required>
+            </div>
+            <div class="form-group col-md-4">
                 <label>Category</label>
                 <input name="category" type="text" class="form-control" ng-model="place.category" required>
             </div>
-            <button class="btn btn-default" ng-click="save(place)">Create Destination</button>
+            <button class="btn btn-success" ng-click="save(place)">Create Destination</button>
         </div>
 </form>

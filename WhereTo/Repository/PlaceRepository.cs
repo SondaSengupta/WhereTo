@@ -67,5 +67,29 @@ namespace WhereTo.Repository
                              select p;
             return PlacesbyId.ToList();
         }
+
+        internal IEnumerable<Place> GetPlacesbyPlaceId(int id)
+        {
+            var PlacesbyId = QuerybyPlaceID(id);
+            return PlacesbyId.ToList();
+        }
+
+
+        internal void UpdateCompleted(int id)
+        {
+            var query = QuerybyPlaceID(id);
+
+            var place = query.First<Place>();
+            place.IsCompleted = true;
+            _dbContext.SaveChanges();
+        }
+
+        private IQueryable<Place> QuerybyPlaceID(int id)
+        {
+            var PlacesbyId = from p in _dbContext.Places
+                             where p.ID == id
+                             select p;
+            return PlacesbyId;
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace WhereTo.Tests.Repository
         [TestMethod]
         public void DatabaseGetPlacesbyUserId()
         {
-            Place testplace = new Place("bcfac595-1a3f-44e9-b4cc-105de3c581bb", "Jersey", true, "rough", "America");
+            Place testplace = new Place( "bcfac595-1a3f-44e9-b4cc-105de3c581bb", "Jersey", "Jersey", "Jersey",  true, "rough", "America");
             repo.Add(testplace);
             List<Place> place = repo.GetPlacesbyUserId("bcfac595-1a3f-44e9-b4cc-105de3c581bb") as List<Place>;
             Assert.AreEqual(1, place.Count);

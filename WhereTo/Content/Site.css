@@ -51,6 +51,22 @@ input, select, textarea {
      border-color: #4d90fe;
 }
 
+.place-tile {
+    height: 440px;
+    padding: 10px;
+    width: 250px;
+    display: inline-block;
+    background-color: #FAEBD7;
+    margin: 10px;
+    text-align: center;
+}
+
+.tile-pic {
+    margin: 20px;
+    height: 200px;
+    width: 200px;
+}
+
 
 
 

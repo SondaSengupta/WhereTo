@@ -1,7 +1,7 @@
 ﻿angular.module('WhereToApp', ['ngRoute', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider.when("/ViewDestination", {
-            templateUrl: "/templates/ViewDestination.html", controller: "PlaceCtrl"
+            templateUrl: "/templates/ViewDestination.html", controller: "ViewCtrl"
         });
         $routeProvider.when("/AddDestination", {
             templateUrl: "/templates/AddDestination.html", controller: "PlaceCtrl"
@@ -11,25 +11,54 @@
            
         })
     })
-.controller('EditCtrl', function ($scope, $location, $routeParams, $http) {
+
+.controller('ViewCtrl', function ($scope, placeRepository) {
+    $scope.places = placeRepository.get();
+    $scope.Completed = function (place) {
+        place.isCompleted = true;
+        placeRepository.update(place);
+    }
+
+   
+})
+
+.controller('EditCtrl', function ($rootScope, $location, $routeParams, placeRepository, $scope, $http) {
     var vm = this;
     var id = $routeParams.id;
-    var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyDzuf3PKADN4hVI4ry8q0bVMsgFMPq_ofk";
-    $http.jsonp(url + '&callback=JSON_CALLBACK')
-    .then(function (response) {
-        console.log(response)
+    $http.get('/api/place/' + id)
+    .success(function (data) {
+        vm.Detail = data[0].placeName;
+        console.log(data[0].placeName);
+    })
+    .error(function (err) {
+        console.log(err);
     });
+        
+
+    //setTimeout(function () {
+    //    var service = new google.maps.places.PlacesService($rootScope.map);
+
+    //    service.getDetails({ placeId: id }, function (Locdetail, status) {
+    //        console.log(Locdetail, status);
+    //        vm.Detail = Locdetail;
+    //        console.log(vm.Detail.name);
+    //    })
+    //}, 5000)
+    
 
     
 
 })
 
-.controller('PlaceCtrl', function ($scope, placeRepository, $location) {
+.controller('PlaceCtrl', function ($rootScope, $scope, placeRepository, $location) {
     $scope.places = placeRepository.get();
 
     $scope.save = function(place) {
         placeRepository.save(place);
-        $location.url("/ViewDestination");
+        $location.path("/ViewDestination");
+        $scope.$apply();
+        
+        
     }
     
     $scope.mapstart = function initialize() {
@@ -39,6 +68,8 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
+
+        $rootScope.map = map;
 
         var input = (document.getElementById('pac-input'));
 
@@ -50,6 +81,7 @@
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
             map: map
+    
         });
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.open(map, marker);
@@ -75,6 +107,9 @@
                 location: place.geometry.location
             });
             marker.setVisible(true);
+            if (place.photos) {
+                marker.icon = place.photos
+            }
 
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 'Place ID: ' + place.place_id + '<br>' +
@@ -83,6 +118,8 @@
 
             $(".add-map").click(function () {
                 $("#destination").val(place.place_id).trigger("input");
+                $("#placeName").val(place.name).trigger("input");
+                $("#placeAddress").val(place.formatted_address).trigger("input");
                 console.log(place.place_id);    
             })
 

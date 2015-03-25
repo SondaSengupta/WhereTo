@@ -2,21 +2,15 @@
     <h1>
         View the top {{25+25}} of your destinations here!
     </h1>
- 
-    <div>
-        <table class="table table-condensed table-hover">
-            <tr>
-                <th>Application User</th>
-                <th>Place</th>
-                <th>Comment</th>
-                <th>Details</th>
-            </tr>
-            <tr ng-repeat="(placedetail, place) in places">
-                <td>{{place.applicationUserID}}</td>
-                <td>{{place.placeID}}</td>
-                <td>{{place.placeComment}}</td>
-                <td><a class="btn btn-primary" href="/#/{{place.placeID}}/edit">Place Details</a></td>
-            </tr>
-        </table>
+
+    <div class="place-tile" ng-repeat="(placedetail, place) in places">
+        <image class="tile-pic"src="{{place.placePic}}"></image>
+        <h3>{{place.placeName}}</h3>
+        <h5>{{place.placeAddress}}</h5>
+        <p>{{place.placeComment}}</p>
+        <label>Done </label>
+        <input class="view-completed"name="isCompleted" type="checkbox" ng-click="Completed(place)">
+        <a class="btn btn-primary" href="/#/{{place.id}}/edit">Place Details</a>
     </div>
+    
 </section>
