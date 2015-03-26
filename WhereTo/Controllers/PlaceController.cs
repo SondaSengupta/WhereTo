@@ -47,7 +47,7 @@ namespace WhereTo.Controllers
         {
             place.ApplicationUserID = User.Identity.GetUserId();
             _db.Add(place);
-           return new HttpResponseMessage(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, place);
           
         }
 

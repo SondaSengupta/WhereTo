@@ -62,32 +62,33 @@
     }
 
     $scope.Randomfunction = function () {
-            var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
-            $scope.Random = $scope.places[randomPlace];
-            console.log($scope.Random);
-            $scope.path();
+            //var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
+            //$scope.Random = $scope.places[randomPlace];
+            //console.log($scope.Random);
+            //$scope.path();
 
-            //EXPERIMENT WITH RANDOM BY CATEGORY
-            //if ($scope.selectedCategory != null) {
-            //    var selectedPlaces = [];
-            //    for (var i = 0; i < $scope.places.length; i++) {
-            //        if ($scope.places[i].category == $scope.selectedCategory) {
-            //            selectedPlaces.push($scope.places[i]);
-            //            i++;
-            //            console.log(selectedPlaces);
-            //        }
-            //        var randomPlace = Math.floor(Math.random() * (selectedPlaces.length - 0));
-            //        $scope.Random = selectedPlaces[randomPlace];
-            //        console.log($scope.Random);
-            //        $scope.path();
-            //    }
-            //}
-            //else {
-            //    var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
-            //    $scope.Random = selectedPlaces[randomPlace];
-            //    console.log($scope.Random);
-            //    $scope.path();
-            //}
+        //EXPERIMENT WITH RANDOM BY CATEGORY
+            if ($scope.selectedCategory.category != null) {
+                var selectedPlaces = [];
+                for (var i = 0; i < $scope.places.length; i++) {
+                    if ($scope.places[i].category == $scope.selectedCategory.category) {
+                        selectedPlaces.push($scope.places[i]);
+                        console.log(selectedPlaces);
+                    }
+                }
+
+                var randomPlace = Math.floor(Math.random() * (selectedPlaces.length - 0));
+                $scope.Random = selectedPlaces[randomPlace];
+                console.log($scope.Random);
+                $scope.path();
+                
+            }
+            else {
+                var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
+                $scope.Random = selectedPlaces[randomPlace];
+                console.log($scope.Random);
+                $scope.path();
+            }
     };
 
     $scope.path = function(){
@@ -129,8 +130,8 @@
     //From Google Place Finder documentation: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     $scope.mapstart = function initialize() {
         var mapOptions = {
-            center: { lat: -33.8688, lng: 151.2195 },
-            zoom: 13
+            center: { lat: 36.1667, lng: -86.7833 },
+            zoom: 7,
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
@@ -178,7 +179,6 @@
             }
 
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Place ID: ' + place.place_id + '<br>' +
                 place.formatted_address + '<br><button class="add-map">Add to Destination</button>');
             infowindow.open(map, marker);
 

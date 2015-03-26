@@ -11,8 +11,7 @@
         },
 
         save: function (place) {
-            $resource('/api/place').save(place);
-            return $resource('/api/place').query();
+            $resource('/api/place').save(place);  
         },
         getPlaceId: function (id) {
             $resource('/api/place/' + id).query();

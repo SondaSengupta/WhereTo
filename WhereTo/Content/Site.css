@@ -1,6 +1,12 @@
-﻿body {
+﻿@font-face {
+    font-family: 'Remachine';
+    src: url('../fonts/RemachineScript_PERSONAL_USE_ONLY.ttf') format('truetype');
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('mappattern.jpg');
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -17,13 +23,17 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input, select, textarea {
+/*input, select, textarea {
     max-width: 280px;
-}
+}*/
 
 h1 {
     text-align: center;
+    font-family: Remachine;
+    font-size: 3em;
 }
+
+
 
 #map-canvas {
     height: 350px;
@@ -74,6 +84,8 @@ h1 {
 .tile-name {
     height: 2em;
     overflow: hidden;
+    font-family: Remachine;
+    font-size: 2em;
 }
 
 .tile-address {
@@ -96,6 +108,27 @@ h1 {
     display: block;
     margin: auto;
     padding-top: 50px;
+}
+
+.edit-view {
+    text-align: center;
+}
+
+.splash {
+    text-align: center;
+    font-size: 2.5em;
+    color: antiquewhite; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url(https://download.unsplash.com/photo-1422513391413-ddd4f2ce3340);
+    background-size: cover;
+    margin-left: -75px;
+    margin-right: -75px;
+    padding: 20px;
+}
+
+.place-form {
+    padding: 50px;
 }
 
 

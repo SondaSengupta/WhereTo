@@ -5,6 +5,7 @@ using System.Web;
 using WhereTo;
 using System.Data.Entity;
 using WhereTo.Models;
+using System.Threading;
 
 namespace WhereTo.Repository
 {
@@ -78,11 +79,24 @@ namespace WhereTo.Repository
             var PlacesbyId = from p in _dbContext.Places
                              where p.ApplicationUserID == userId
                              select p;
+            List<Place> GetPlacesbyUser;
             if (PlacesbyId == null)
             {
                 return null;
             }
-            return PlacesbyId.ToList();
+            try
+            {
+               GetPlacesbyUser = PlacesbyId.ToList();
+               return GetPlacesbyUser;
+            }
+            catch 
+            {
+                Thread.Sleep(1000);
+                GetPlacesbyUser = PlacesbyId.ToList();
+                return GetPlacesbyUser;
+
+            }
+            
         }
 
         internal IEnumerable<Place> GetPlacesbyPlaceId(int id)
