@@ -1,5 +1,23 @@
-﻿This is for editing
-{{5 + 5}}
+﻿<image class="edit-img" ng-src={{Detail.placePic}}></image>
+<h1>Destination Name</h1>
+<h3>{{Detail.placeAddress}}</h3>
+<h4>{{Detail.placeComment}}</h4>
 
-<input class="name form-control" id="name" type="text" ng-model="Detail.placeName">
-<input type="submit" class="btn btn-success btn-block" value="Submit to Update" ng-click="updateDetails(Detail)">
+
+
+<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Edit these Details
+</button>
+<div class="collapse" id="collapseExample">
+    <div class="well">
+        <label>Name<input class="name form-control" id="name" type="text" ng-model="Detail.placeName"></label>
+        <label>Address<input class="name form-control" id="name" type="text" ng-model="Detail.placeAddress"></label>
+        <label>Your Thoughts?<input class="name form-control" id="name" type="text" ng-model="Detail.placeComment"></label>
+        <br />
+        <h3>Did You Complete It?</h3>
+        <input type="checkbox" ng-model="Detail.isCompleted">
+
+
+        <input type="submit" class="btn btn-success btn-block" value="Submit to Update" ng-click="updateDetails(Detail)">
+    </div>
+</div>

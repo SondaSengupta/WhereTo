@@ -15,16 +15,21 @@ namespace WhereTo.Controllers
     {
         private static PlaceRepository _db = new PlaceRepository();
 
+        //GET: /api/place/all
+        [Route("api/place/all")]
+        public IEnumerable<Place> GetAll()
+        {
+            string userId = User.Identity.GetUserId();
+            return _db.GetAllPlaces(userId);
+            
+        }
+
         // GET: /api/place
         [Route("api/place")]
         public IEnumerable<Place> Get()
         {
             string userId = User.Identity.GetUserId();
-            if (userId != null)
-            {
-                return _db.GetPlacesbyUserId(userId);
-            }
-            return _db.GetAllPlaces();
+            return _db.GetPlacesbyUserId(userId);  
         }
 
         [Route("api/place/{id}")]
@@ -46,6 +51,7 @@ namespace WhereTo.Controllers
           
         }
 
+        //PUT/UPDATE: api/{id}/update
         [Route("api/{id}/update")]
         [HttpPost]
         public HttpResponseMessage Update(Place place)

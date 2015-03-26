@@ -2,27 +2,27 @@
     <h1>
         View the top {{25+25}} of your destinations here!
     </h1>
+    <button ng-click="Randomfunction()">Random Place</button>
 
     <div ng-repeat="placeCat in places | unique:'category'">
-        <h1>{{placeCat.category}} </h1>
-        <div class="place-tile" ng-repeat="place in places | filter:{category:placeCat.category}"> 
-            <image class="tile-pic" src="{{place.placePic}}"></image>
-            <h3>{{place.placeName}}</h3>
-            <h5>{{place.placeAddress}}</h5>
-            <p>{{place.placeComment}}</p>
+        <h1 class="category">{{placeCat.category}} </h1>
+        <div class="place-tile" ng-repeat="place in places | filter:{category:placeCat.category} | filter: place.isCompleted = false ">
+            <image class="tile-pic" ng-src="{{place.placePic}}"></image>
+            <h3 class="tile-name">{{place.placeName}}</h3>
+            <h5 class="tile-address">{{place.placeAddress}}</h5>
+            <p class="tile-comment">{{place.placeComment}}...</p>
             <label>Status: To Visit </label>
-            <!--<input class="view-completed" name="isCompleted" type="checkbox" ng-click="Completed(place)">-->
             <br />
             <a class="btn btn-primary" href="/#/{{place.id}}/edit">Place Details</a>
         </div>
     </div>
 
-    <h1>Completed Destinations</h1>
+    <h1 class="category">Completed Destinations</h1>
     <div class = "place-tile" ng-repeat= "place in places | filter: place.isCompleted = true">
-        <image class="tile-pic" src="{{place.placePic}}"></image>
-        <h3>{{place.placeName}}</h3>
-        <h5>{{place.placeAddress}}</h5>
-        <p>{{place.placeComment}}</p>
+        <image class="tile-pic" ng-src="{{place.placePic}}"></image>
+        <h3 class="tile-name">{{place.placeName}}</h3>
+        <h5 class="tile-address">{{place.placeAddress}}</h5>
+        <p class="tile-comment">{{place.placeComment}}...</p>
         <label>Status: Done! </label>
         <br/>
         <a class="btn btn-primary" href="/#/{{place.id}}/edit">Place Details</a>

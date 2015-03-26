@@ -5,9 +5,22 @@
 <div ng-app="WhereToApp">
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&signed_in=true"></script>
         
+    <div ng-controller="PlaceCtrl" class="map-jumbotron">
         <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-        <div id="map-canvas" ng-controller="PlaceCtrl"></div>
-        <div ng-view></div>
+        <div id="map-canvas"></div>
+    </div>
+
+    <div ng-view> </div>
+            
+    <div class="map-jumbotron" ng-controller="PlaceCtrl">
+        <div class="place-tile" ng-repeat="place in places">
+            <image class="tile-pic" ng-src="{{place.placePic}}"></image>
+            <h3 class="tile-name">{{place.placeName}}</h3>
+            <h5 class="tile-address">{{place.placeAddress}}</h5>
+            <p class="tile-comment">{{place.placeComment}}...</p>
+            <label>Category: {{place.category}}</label>
+        </div>
+    </div>
  
 
 </div>

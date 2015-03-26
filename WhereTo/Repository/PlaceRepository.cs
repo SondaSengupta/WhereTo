@@ -22,9 +22,12 @@ namespace WhereTo.Repository
             return _dbContext;
         }
 
-        public IQueryable<Models.Place> GetAllPlaces()
+        public IEnumerable<Models.Place> GetAllPlaces(string userId)
         {
-            return _dbContext.Places;
+            var PlacesNotUser = from p in _dbContext.Places
+                             where p.ApplicationUserID != userId
+                             select p;
+            return PlacesNotUser.ToList();
         }
 
         public int GetCount()

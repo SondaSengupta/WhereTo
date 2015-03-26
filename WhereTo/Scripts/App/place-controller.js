@@ -54,18 +54,32 @@
 
 
 .controller('ViewCtrl', function ($scope, placeRepository, $location) {
+    $(".map-jumbotron").hide();
+    $('.random-tile').hide();
     $scope.places = placeRepository.get();
     $scope.Completed = function (place) {
-        place.isCompleted = true;
         placeRepository.update(place);
     }
-    $scope.$apply();
+
+    $scope.Randomfunction = function () {
+        setTimeout(function () {
+            var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
+            $scope.Random = $scope.places[randomPlace];
+            $location.path("/" + $scope.Random.id + "/edit")
+        }, 4000)
+    };
+
+
     $location.path("/ViewDestination");
+
+
+    
 
    
 })
 
 .controller('EditCtrl', function ($location, $routeParams, placeRepository, $scope, $http) {
+    $(".map-jumbotron").hide();
     var id = $routeParams.id;
     $http.get('/api/place/' + id)
     .success(function (data) {
@@ -79,38 +93,21 @@
 
     $scope.updateDetails = function (Detail) {
         placeRepository.updateDetails(Detail);
+        $location.path("/ViewDestination")
        
-    }
-        
-
-    //setTimeout(function () {
-    //    var service = new google.maps.places.PlacesService($rootScope.map);
-
-    //    service.getDetails({ placeId: id }, function (Locdetail, status) {
-    //        console.log(Locdetail, status);
-    //        vm.Detail = Locdetail;
-    //        console.log(vm.Detail.name);
-    //    })
-    //}, 5000)
-    
-
-    
+    } 
 
 })
 
 .controller('PlaceCtrl', function ($rootScope, $scope, placeRepository, $location) {
-    $scope.places = placeRepository.get();
+    $(".map-jumbotron").show();
 
     $scope.save = function(place) {
         placeRepository.save(place);
-        $scope.$apply();
-        $location.path("/ViewDestination");
-       
-        
-        
+        $location.path("/ViewDestination");    
     }
     
-    //Taken from Google Place Finder documentation: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+    //From Google Place Finder documentation: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
     $scope.mapstart = function initialize() {
         var mapOptions = {
             center: { lat: -33.8688, lng: 151.2195 },
@@ -174,7 +171,9 @@
             })
 
         });
+        $scope.places = placeRepository.getAll();
     }
 
     google.maps.event.addDomListener(window, 'load', $scope.mapstart);
+   
 })
