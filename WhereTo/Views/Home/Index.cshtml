@@ -13,14 +13,23 @@
     <div ng-view> </div>
             
     <div class="map-jumbotron" ng-controller="PlaceCtrl">
+        <h1 class="others-title"> Where Others Want to Visit</h1>
         <div class="place-tile" ng-repeat="place in places">
             <image class="tile-pic" ng-src="{{place.placePic}}"></image>
             <h3 class="tile-name">{{place.placeName}}</h3>
             <h5 class="tile-address">{{place.placeAddress}}</h5>
             <p class="tile-comment">{{place.placeComment}}...</p>
             <label>Category: {{place.category}}</label>
+            <button class="btn-success" ng-click="AddMyList(place)">Add to My List!</button>
         </div>
-    </div>
+        <h1> My Destinations</h1>
+        <div class="place-tile" ng-repeat="place in myplaces">
+            <image class="tile-pic" ng-src="{{place.placePic}}"></image>
+            <h3 class="tile-name">{{place.placeName}}</h3>
+            <h5 class="tile-address">{{place.placeAddress}}</h5>
+            <p class="tile-comment">{{place.placeComment}}...</p>
+            <label>Category: {{place.category}}</label>
+        </div>
  
 
 </div>

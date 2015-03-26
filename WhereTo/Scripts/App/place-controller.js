@@ -62,20 +62,40 @@
     }
 
     $scope.Randomfunction = function () {
-        setTimeout(function () {
             var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
             $scope.Random = $scope.places[randomPlace];
-            $location.path("/" + $scope.Random.id + "/edit")
-        }, 4000)
+            console.log($scope.Random);
+            $scope.path();
+
+            //EXPERIMENT WITH RANDOM BY CATEGORY
+            //if ($scope.selectedCategory != null) {
+            //    var selectedPlaces = [];
+            //    for (var i = 0; i < $scope.places.length; i++) {
+            //        if ($scope.places[i].category == $scope.selectedCategory) {
+            //            selectedPlaces.push($scope.places[i]);
+            //            i++;
+            //            console.log(selectedPlaces);
+            //        }
+            //        var randomPlace = Math.floor(Math.random() * (selectedPlaces.length - 0));
+            //        $scope.Random = selectedPlaces[randomPlace];
+            //        console.log($scope.Random);
+            //        $scope.path();
+            //    }
+            //}
+            //else {
+            //    var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
+            //    $scope.Random = selectedPlaces[randomPlace];
+            //    console.log($scope.Random);
+            //    $scope.path();
+            //}
+    };
+
+    $scope.path = function(){
+        $location.path("/" + $scope.Random.id + "/edit")
     };
 
 
     $location.path("/ViewDestination");
-
-
-    
-
-   
 })
 
 .controller('EditCtrl', function ($location, $routeParams, placeRepository, $scope, $http) {
@@ -84,8 +104,6 @@
     $http.get('/api/place/' + id)
     .success(function (data) {
         $scope.Detail = data[0];
-        console.log(data);
-        console.log($scope.Detail);
     })
     .error(function (err) {
         console.log(err);
@@ -95,7 +113,8 @@
         placeRepository.updateDetails(Detail);
         $location.path("/ViewDestination")
        
-    } 
+    }
+
 
 })
 
@@ -172,8 +191,17 @@
 
         });
         $scope.places = placeRepository.getAll();
+        if ($scope.places == null) {
+            $('.others-title').hide();
+        }
+
+        $scope.myplaces = placeRepository.get();
     }
 
     google.maps.event.addDomListener(window, 'load', $scope.mapstart);
+
+    $scope.AddMyList = function (place) {
+        placeRepository.save(place)
+    }
    
 })

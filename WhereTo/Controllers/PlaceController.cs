@@ -59,5 +59,6 @@ namespace WhereTo.Controllers
             _db.UpdatePlace(place);
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
     }
 }

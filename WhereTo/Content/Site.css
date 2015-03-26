@@ -21,6 +21,10 @@ input, select, textarea {
     max-width: 280px;
 }
 
+h1 {
+    text-align: center;
+}
+
 #map-canvas {
     height: 350px;
     margin: 0px;
@@ -84,6 +88,14 @@ input, select, textarea {
 
 .category {
     text-align: center;
+}
+
+.edit-img {
+    text-align: center;
+    height: 500px;
+    display: block;
+    margin: auto;
+    padding-top: 50px;
 }
 
 

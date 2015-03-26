@@ -26,8 +26,17 @@ namespace WhereTo.Repository
         {
             var PlacesNotUser = from p in _dbContext.Places
                              where p.ApplicationUserID != userId
-                             select p;
-            return PlacesNotUser.ToList();
+                                select p;
+            try
+            {
+                return PlacesNotUser.ToList();
+            }
+
+            catch
+            {
+                return null;
+            }   
+            
         }
 
         public int GetCount()
@@ -37,6 +46,14 @@ namespace WhereTo.Repository
 
         public void Add(Place F)
         {
+            var duplicates = from p in _dbContext.Places
+                             where p.PlaceName == F.PlaceName
+                             select p;
+
+            if (duplicates.ToList().Count > 0)
+            {
+               UpdatePlace(F);
+            }
             _dbContext.Places.Add(F);
             _dbContext.SaveChanges();
         }
@@ -56,18 +73,15 @@ namespace WhereTo.Repository
             _dbContext.SaveChanges();
         }
 
-        public void Dispose()
-        {
-            _dbContext.Dispose();
-        }
-
-
-
         public IEnumerable<Place> GetPlacesbyUserId(string userId)
         {
             var PlacesbyId = from p in _dbContext.Places
                              where p.ApplicationUserID == userId
                              select p;
+            if (PlacesbyId == null)
+            {
+                return null;
+            }
             return PlacesbyId.ToList();
         }
 
@@ -102,6 +116,11 @@ namespace WhereTo.Repository
                              where p.ID == id
                              select p;
             return PlacesbyId;
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
         }
     }
 }
