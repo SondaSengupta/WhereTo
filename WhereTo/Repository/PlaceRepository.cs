@@ -56,7 +56,16 @@ namespace WhereTo.Repository
                UpdatePlace(F);
             }
             _dbContext.Places.Add(F);
-            _dbContext.SaveChanges();
+
+            try
+            {
+               _dbContext.SaveChanges();
+            }
+            catch
+            {
+
+            }
+            
         }
 
         public void Delete(Place F)
@@ -120,6 +129,7 @@ namespace WhereTo.Repository
             item.PlaceComment = place.PlaceComment;
             item.PlaceName = place.PlaceName;
             item.PlacePic = place.PlacePic;
+            item.Category = place.Category;
 
             try
             {

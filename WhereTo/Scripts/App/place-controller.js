@@ -102,6 +102,7 @@
     $http.get('/api/place/' + id)
     .success(function (data) {
         $scope.Detail = data[0];
+        console.log($scope.Detail);
     })
     .error(function (err) {
         console.log(err);
@@ -200,6 +201,7 @@
     $scope.AddMyList = function (place) {
         place.isCompleted = false;
         placeRepository.save(place)
+        $location.path("/ViewDestination");
     }
    
 })
