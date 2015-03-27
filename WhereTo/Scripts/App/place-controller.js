@@ -62,13 +62,17 @@
     }
 
     $scope.Randomfunction = function () {
-            //var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
-            //$scope.Random = $scope.places[randomPlace];
-            //console.log($scope.Random);
-            //$scope.path();
+            
 
         //EXPERIMENT WITH RANDOM BY CATEGORY
-            if ($scope.selectedCategory.category != null) {
+        if ( typeof($scope.selectedCategory) == "undefined") {
+            var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
+            $scope.Random = $scope.places[randomPlace];
+            console.log($scope.Random);
+            $scope.path();
+        }
+
+        else if ($scope.selectedCategory.category != null) {
                 var selectedPlaces = [];
                 for (var i = 0; i < $scope.places.length; i++) {
                     if ($scope.places[i].category == $scope.selectedCategory.category) {
@@ -80,14 +84,7 @@
                 var randomPlace = Math.floor(Math.random() * (selectedPlaces.length - 0));
                 $scope.Random = selectedPlaces[randomPlace];
                 console.log($scope.Random);
-                $scope.path();
-                
-            }
-            else {
-                var randomPlace = Math.floor(Math.random() * ($scope.places.length - 0));
-                $scope.Random = selectedPlaces[randomPlace];
-                console.log($scope.Random);
-                $scope.path();
+                $scope.path(); 
             }
     };
 
@@ -201,6 +198,7 @@
     google.maps.event.addDomListener(window, 'load', $scope.mapstart);
 
     $scope.AddMyList = function (place) {
+        place.isCompleted = false;
         placeRepository.save(place)
     }
    

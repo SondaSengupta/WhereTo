@@ -120,8 +120,16 @@ namespace WhereTo.Repository
             item.PlaceComment = place.PlaceComment;
             item.PlaceName = place.PlaceName;
             item.PlacePic = place.PlacePic;
-     
-            _dbContext.SaveChanges();
+
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+
+            }
+            
         }
 
         private IQueryable<Place> QuerybyPlaceID(int id)
