@@ -100,6 +100,7 @@ h1 {
 
 .category {
     text-align: center;
+    overflow: hidden;
 }
 
 .edit-img {

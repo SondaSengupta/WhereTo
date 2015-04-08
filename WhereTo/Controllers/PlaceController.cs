@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WhereTo.Controllers
 {
+    [Authorize]
     public class PlaceController : ApiController
     {
         private static PlaceRepository _db = new PlaceRepository();

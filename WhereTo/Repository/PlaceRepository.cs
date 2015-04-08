@@ -121,18 +121,18 @@ namespace WhereTo.Repository
                              where p.ID == place.ID
                              select p;
 
-            List<Place> placeQuery = getPlace.ToList<Place>();
-            Place item = placeQuery.First();
-
-            item.IsCompleted = place.IsCompleted;
-            item.PlaceAddress = place.PlaceAddress;
-            item.PlaceComment = place.PlaceComment;
-            item.PlaceName = place.PlaceName;
-            item.PlacePic = place.PlacePic;
-            item.Category = place.Category;
 
             try
             {
+                List<Place> placeQuery = getPlace.ToList<Place>();
+                Place item = placeQuery.First();
+
+                item.IsCompleted = place.IsCompleted;
+                item.PlaceAddress = place.PlaceAddress;
+                item.PlaceComment = place.PlaceComment;
+                item.PlaceName = place.PlaceName;
+                item.PlacePic = place.PlacePic;
+                item.Category = place.Category;
                 _dbContext.SaveChanges();
             }
             catch
