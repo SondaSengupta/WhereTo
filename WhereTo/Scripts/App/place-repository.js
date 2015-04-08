@@ -6,12 +6,12 @@
             return $resource('/api/place').query();
         },
 
-        getAll: function(){
+        getAll: function () {
             return $resource('api/place/all').query();
         },
 
         save: function (place) {
-            $resource('/api/place').save(place);  
+            $resource('/api/place').save(place);
         },
         getPlaceId: function (id) {
             $resource('/api/place/' + id).query();
